@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Story - Honey Shop</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;700&display=swap" rel="stylesheet">
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'poppins', sans-serif;
+            list-style: none;
+            text-decoration: none;
+            scroll-behavior: smooth;
+            scroll-padding-top: 3rem;
+        }
+        :root{
+            --main-color:#ff9f0d;
+            --text-color:#fff;
+            --other-color:#212121;
+            --second-color:#9e9e9e;
+            --bg-color:#111111;
+            --big-font:3.5rem;
+            --h2-font:2.6rem;
+            --p-font:1.1rem;
+        }
+        body{
+            background: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+        header{
+            position: fixed;
+            width: 100%;
+            top: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: transparent;
+            padding: 30px 14%;
+            transition: all .50s ease;
+        }
+        .logo{
+            display: flex;
+            align-items: center;
+            color: var(--text-color);
+            font-size: 33px;
+            font-weight: 700;
+        }
+        .logo i{
+            vertical-align: middle;
+            margin-right: 8px;
+            color: var(--main-color);
+        }
+        .navlist{
+            display: flex;
+        }
+        .navlist a {
+            color: var(--text-color);
+            font-size: var(--p-font);
+            font-weight: 600;
+            margin: 0 15px;
+            transition: all .50s ease;
+        }
+        .navlist a:hover{
+            color: var(--main-color);
+        }
+        .navlist a.active{
+            color: var(--main-color);
+        }
+        .nav-icons{
+            display: flex;
+            align-items: center;
+            padding: 8px 15px;
+            background: var(--main-color);
+            border-radius: 3rem;
+            box-shadow: #ff9f0d 0px 1px 25px;
+        }
+        .nav-icons i{
+            vertical-align: middle;
+            font-size: 25px;
+            margin-right: 8px;
+            margin-left: 5px;
+            color: var(--bg-color);
+            transition: all .50s ease;
+        }
+        #cart{
+            font-size: 22px;
+            color: var(--text-color);
+            background: var(--main-color);
+            padding: 10px;
+            border-radius: 2rem;
+            transition: all .50s ease;
+        }
+        .cart-count {
+            position: absolute;
+            top: 25px;
+            right: 45px;
+            background: var(--text-color);
+            color: var(--bg-color);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .nav-icons input {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 3rem;
+            background: transparent;
+            color: var(--text-color);
+            font-size: 14px;
+            margin-right: 10px;
+        }
+        #menu-icon{
+            font-size: 32px;
+            color: var(--bg-color);
+            z-index: 10001;
+            cursor: pointer;
+            display: none;
+        }
+        .nav-icons i:hover{
+            transform: scale(1.1);
+            color: var(--text-color);
+        }
+        section{
+            padding: 70px 14% 60px;
+        }
+        .home{
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            align-items: center;
+            gap: 2rem;
+        }
+        .home-img img{
+            width: 100%;
+            height: auto;
+            margin-bottom: 0rem;
+        }
+        .home-text h1{
+            font-size: var(--big-font);
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 2rem;
+        }
+        span{
+            color: var(--main-color);
+        }
+        .btn{
+            display: inline-block;
+            padding: 15px 35px;
+            background: var(--other-color);
+            color: var(--main-color);
+            font-size: var(--p-font);
+            font-weight: 500;
+            letter-spacing: 1px;
+            border-radius: 3rem;
+            transition: all .50s ease;
+        }
+        .btn i{
+            vertical-align: middle;
+            margin-left: 9px;
+            font-size: 22px;
+        }
+        .btn:hover{
+            color: var(--text-color);
+            background: var(--main-color);
+            box-shadow: #ff9f0d 0px 1px 25px;
+        }
+        .btn2{
+            display: inline-block;
+            margin-left: 30px;
+            font-size: var(--p-font);
+            font-weight: 500;
+            letter-spacing: 1px;
+            border-bottom: 3px solid var(--main-color);
+            color: var(--main-color);
+            transition: all .50s ease;
+        }
+        .btn2:hover{
+            transform: scale(1.1) translateX(12px);
+        }
+        header.sticky{
+            padding: 12px 14%;
+            background: var(--other-color);
+        }
+        .container{
+            padding: 30px 5% 70px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, auto));
+            gap: 1rem;
+            text-align: center;
+        }
+        .container-box{
+            padding: 40px;
+            background: var(--other-color);
+            border-radius: 3rem;
+        }
+        .container-box img{
+            width: 100%;
+            max-width: 50px;
+            height: auto;
+        }
+        .container-box h3{
+            font-size: 21px;
+            font-weight: bold;
+            margin: 16px 0;
+        }
+        .container-box a{
+            color: var(--second-color);
+            font-size: var(--p-font);
+            letter-spacing: 1px;
+            transition: all .50s ease;
+        }
+        .container-box a:hover{
+            color: var(--main-color);
+        }
+        .about{
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            align-items: center;
+            gap: 4rem;
+        }
+        .about-img img{
+            width: 100%;
+            height: auto;
+        }
+        .about-text h2{
+            font-size: var(--h2-font);
+            line-height: 1.3;
+            margin-bottom: 2rem;
+        }
+        .about-text p{
+            color: var(--second-color);
+            font-size:var(--p-font);
+            line-height: 30px;
+            margin-bottom: 3rem;
+        }
+        .middle-text{
+            text-align: center;
+        }
+        .middle-text h4{
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--main-color);
+        }
+        .middle-text h2{
+            font-size: var(--h2-font);
+        }
+        .shop-content{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+            gap: 2rem;
+            align-items: center;
+            margin-top: 4rem;
+        }
+        .row{
+            position: relative;
+            padding: 10px 30px 10px;
+            background-color: var(--other-color);
+            border-radius: 3rem;
+        }
+        .row img{
+            width: 100%;
+            height: auto;
+            transition: all .50s ease;
+            cursor: pointer;
+        }
+        .row h3{
+            font-size: 18px;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+        .row p{
+            color: var(--second-color);
+            font-size: var(--p-font);
+            line-height: 30px;
+            margin-bottom: 1.1rem;
+        }
+        .in-text{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .in-text .price h6{
+            font-size: 17px;
+            color: var(--main-color);
+            font-weight: 600;
+        }
+        .in-text .s-btnn a{
+            display: inline-block;
+            padding: 9px 23px;
+            background: var(--bg-color);
+            color: var(--main-color);
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            border-radius: 3rem;
+            transition: all .50s ease;
+        }
+        .in-text .s-btnn a:hover{
+            background: var(--main-color);
+            color: var(--bg-color);
+            box-shadow: #ff9f0d 0px 1px 25px;
+        }
+        .top-icon{
+            position: absolute;
+            top: 30px;
+            left: 35px;
+        }
+        .top-icon i{
+            font-size: 22px;
+            color: var(--main-color);
+        }
+        .row-btn{
+            text-align: center;
+            margin-top: 6rem;
+        }
+        .row img:hover{
+            transform: scale(1.1);
+        }
+        .review-content{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, auto));
+            gap: 2rem;
+            align-items: center;
+            margin-top: 4rem;
+        }
+        .box{
+            padding: 35px;
+            background: var(--other-color);
+            border-radius: 3rem;
+        }
+        .box p{
+            color: var(--second-color);
+            font-size: var(--p-font);
+            line-height: 30px;
+            margin-bottom: 1.5rem;
+        }
+        .in-box{
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+        .bx-img img{
+            width: 100%;
+            height: auto;
+            max-width: 80px;
+            border-radius: 3rem;
+        }
+        .bxx-text h4{
+            margin: 5px 0;
+            font-size: 18px;
+        }
+        .bxx-text h5{
+            color: var(--second-color);
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+        .rating i{
+            color: var(--main-color);
+        }
+        .contact-content{
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            flex-direction: column;
+        }
+        .contact-img{
+            display: flex;
+            flex-wrap: wrap;
+            text-align: center;
+            gap: 4rem;
+            margin-bottom: 5rem;
+            justify-content: center;
+        }
+        .contact-img img{
+            width: 100%;
+            max-width: 200px;
+            height: auto;
+            cursor: pointer;
+            transition: all .50s ease;
+        }
+        .contact-img img:hover{
+            transform: scale(0.9);
+        }
+        .contact-text{
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        .contact-text h2{
+            font-size: var(--h2-font);
+            margin-bottom: 10px;
+        }
+        .contact-text p{
+            color: var(--second-color);
+            font-size: var(--p-font);
+            max-width: 950px;
+            line-height: 30px;
+            margin-bottom: 3rem;
+        }
+        .social{
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .social i{
+            display: inline-block;
+            font-size: 32px;
+            color: var(--second-color);
+            transition: all .50s ease;
+        }
+        .social .clr i{
+            color: var(--main-color);
+        }
+        .social i:hover{
+            color: var(--main-color);
+        }
+        .main-d i{
+            color: var(--main-color);
+            font-size: 22px;
+        }
+        .main-d a{
+            color: var(--second-color);
+            font-size: 15px;
+        }
+        .details{
+            text-align: center;
+        }
+        .scroll{
+            position: fixed;
+            bottom: 2.2rem;
+            right: 3.2rem;
+            z-index: 1000;
+        }
+        .scroll i{
+            font-size: 22px;
+            color: var(--text-color);
+            background: var(--main-color);
+            padding: 10px;
+            border-radius: 2rem;
+            transition: all .50s ease;
+        }
+        .scroll i:hover{
+            transform: translateY(-5px);
+        }
+
+        /* --- Story Page Specific Styles (your original ones) --- */
+        .story-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px 50px;
+            margin-top:60px ;
+        }
+        .story-section {
+            margin-bottom: 50px;
+        }
+        .story-section h2 {
+            color: var(--main-color);
+            margin-bottom: 20px;
+        }
+        .story-section p {
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        .timeline {
+            position: relative;
+            padding-left: 50px;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        /*
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: -30px;
+            top: 5px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: var(--main-color);
+        }
+        .timeline-item:after {
+            content: '';
+            position: absolute;
+            left: -23px;
+            top: 12px;
+            width: 1px;
+            height: calc(100% + 25px);
+            background: var(--second-color);
+        }
+        .timeline-item:last-child:after {
+            display: none;
+        }
+        */ /* These were commented out in the previous response, but ensure they are not causing duplicates if you intend to use them */
+
+        .back-btn { /* This class is on an 'a' tag, but your HTML uses 'btn' */
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background: var(--main-color);
+            color: var(--text-color);
+            border-radius: 3rem;
+        }
+
+        /* --- New Animations & Transitions --- */
+
+        /* General Section Entrance Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Timeline Item Entrance Animation */
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Hover effect for Back to Home button */
+        .btn {
+            transition: all .4s ease; /* Ensure transition is smooth for all properties */
+        }
+
+        .btn:hover {
+            transform: scale(1.05); /* Slightly enlarge on hover */
+            box-shadow: 0px 8px 15px rgba(255, 159, 13, 0.4); /* More prominent shadow */
+        }
+
+        /* Header sticky transition */
+        header.sticky {
+            background: var(--other-color); /* A solid background when sticky */
+            padding: 15px 14%; /* Slightly more compact */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Add a subtle shadow */
+            animation: fadeInDown 0.5s ease-out; /* Optional: animation when header becomes sticky */
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Story Section Animations */
+        .story-section {
+            opacity: 0; /* Hidden by default */
+            transform: translateY(50px); /* Start slightly below */
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* Smooth transition */
+        }
+
+        .story-section.fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Timeline specific animations */
+        .timeline-item {
+            opacity: 0;
+            transform: translateX(-50px); /* Start off-screen to the left */
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            transition-delay: var(--delay); /* Use CSS variable for staggered effect */
+        }
+
+        .timeline-item.slide-in {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .timeline {
+            border-left: 2px solid var(--second-color); /* Main timeline line */
+            padding-left: 30px; /* Space for circles */
+        }
+
+        .timeline-item:before {
+            left: -10px; /* Adjust position relative to new timeline line */
+            background: var(--main-color);
+            box-shadow: 0 0 10px var(--main-color); /* Add a glow to timeline dots */
+        }
+
+        /* Remove the duplicate :after pseudo-element if it causes issues with the new border-left */
+        /* If you want a continuous line AND the circles, keep border-left on .timeline and remove :after */
+        .timeline-item:after {
+            display: none; /* We'll use the .timeline border-left instead */
+        }
+
+
+        /* List item animations for "Our Products" */
+        .story-section ul li {
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+            transition-delay: var(--li-delay); /* Staggered delay for list items */
+        }
+
+        .story-section ul li.fade-in {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Media Query Adjustments for Animations (optional, but good for performance) */
+        @media (prefers-reduced-motion: reduce) {
+            .story-section, .timeline-item, .story-section ul li {
+                animation: none !important;
+                transition: none !important;
+                transform: none !important;
+                opacity: 1 !important;
+            }
+        }
+
+        /* Cart icon animation on hover (if not already defined) */
+        #cart {
+            transition: transform 0.3s ease;
+        }
+        #cart:hover {
+            transform: scale(1.1) rotate(5deg); /* Small bounce and rotation */
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1545px) {
+            header{
+                padding: 22px 4%;
+                transition: .2s;
+            }
+            header.sticky{
+                padding: 14px 4%;
+                transition: .2s;
+            }
+            section{
+                padding: 50px 4% 40px;
+                transition: .2s;
+            }
+            .container{
+                padding: 30px 4% 50px;
+            }
+        }
+
+        @media (max-width: 1180px) {
+            :root{
+                --big-font:3rem;
+                --h2-font:2.2rem;
+                --p-font:1rem;
+            }
+            .home{
+                height: 85vh;
+            }
+        }
+
+        @media (max-width: 1060px) {
+            #menu-icon{
+                display: initial;
+            }
+            .navlist{
+                position: absolute;
+                top: -1000px;
+                left: 0;
+                right: 0;
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+                background: var(--other-color);
+                transition: all .50s ease;
+            }
+            .navlist a{
+                display: block;
+                padding: 0.5rem;
+                margin: 1rem;
+            }
+            .navlist.active{
+                top: 100%;
+            }
+        }
+
+         @media (max-width: 992px) {
+            .about-section {
+                padding: 90px 4% 40px;
+            }
+            .about-text h3 {
+                font-size: 1.6rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 12px 4%;
+            }
+            .navlist {
+                top: -100%; /* Ensure it's hidden */
+                left: 0;
+                width: 100%;
+                flex-direction: column;
+                background: var(--other-color);
+                padding: 20px 0;
+                transition: all 0.5s ease;
+                z-index: 999;
+                align-items: center; /* Center items in mobile menu */
+                gap: 1rem;
+            }
+            .navlist.active {
+                top: 70px; /* Position below header */
+            }
+            #menu-icon {
+                display: block;
+            }
+
+            .about-section {
+                padding: 80px 3% 30px;
+            }
+
+            .about-content {
+                flex-direction: column; /* Stack image and text vertically */
+                gap: 30px;
+            }
+
+            .about-text, .about-image {
+                min-width: auto; /* Remove min-width to allow full width */
+                width: 100%;
+            }
+
+            .about-text {
+                text-align: center; /* Center text on small screens */
+            }
+        }
+
+        @media (max-width: 576px) {
+            .about-section h2 {
+                font-size: 2rem;
+            }
+            .about-text h3 {
+                font-size: 1.4rem;
+            }
+            .about-text p {
+                font-size: 0.95rem;
+            }
+            .cta-button {
+                padding: 10px 25px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .about-section h2 {
+                font-size: 1.8rem;
+            }
+            .about-text h3 {
+                font-size: 1.2rem;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo"><i class='bx bxs-home'></i>Home</a>
+        <ul class="navlist">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html" class="active">About Us</a></li>
+            <li><a href="index.html#shop">Our Shop</a></li>
+            <li><a href="index.html#review">Our Customer</a></li>
+            <li><a href="index.html#contact">Contact Us</a></li>
+        </ul>
+        <div class="nav-icons">
+            <input type="search" placeholder="search Here">
+            <a href="#"><i class='bx bx-search'></i></a>
+        </div>
+        <a href="cart.html"><i class='bx bx-cart' id="cart"></i><span class="cart-count">0</span></a>
+        <i class='bx bx-menu' id="menu-icon"></i> </header>
+
+    <section class="story-content">
+        <div class="story-section">
+            <h2>Our Humble Beginnings</h2>
+            <p>Founded in 2010, Honey Shop started as a small family business with just 5 beehives in the countryside. Our founder, John Beekeeper, had a passion for pure, natural honey and wanted to share it with the world.</p>
+        </div>
+
+        <div class="story-section">
+            <h2>Our Process</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>Beekeeping</h3>
+                    <p>We maintain over 200 hives across organic farms, ensuring our bees have access to the purest nectar sources.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Harvesting</h3>
+                    <p>Our honey is harvested only twice a year to allow proper maturation and to not stress the bees.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Processing</h3>
+                    <p>We use cold extraction methods to preserve all the natural enzymes and nutrients in the honey.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Packaging</h3>
+                    <p>All our honey is packaged in glass jars to maintain purity and prevent chemical leaching.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="story-section">
+            <h2>Our Products</h2>
+            <ul>
+                <li>Raw, unfiltered honey</li>
+                <li>Organic honey varieties (Wildflower, Clover, Orange Blossom)</li>
+                <li>Honey-based skincare products</li>
+                <li>Specialty infused honeys (Cinnamon, Ginger, Chili)</li>
+                <li>Beeswax candles and products</li>
+            </ul>
+        </div>
+
+        <div class="story-section">
+            <h2>Shop Hours</h2>
+            <p>Our physical store is open:</p>
+            <p>Monday-Friday: 9am - 6pm</p>
+            <p>Saturday: 10am - 4pm</p>
+            <p>Sunday: Closed</p>
+        </div>
+
+        <a href="index.html" class="btn"><i class='bx bx-arrow-back'></i> Back to Home</a>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Existing cart count and sticky header logic
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            document.querySelector('.cart-count').textContent = cart.length;
+
+            const header = document.querySelector("header");
+            window.addEventListener("scroll", function () {
+                header.classList.toggle("sticky", this.window.scrollY > 80);
+            });
+
+            // Mobile Menu Toggle
+            let menuIcon = document.querySelector('#menu-icon');
+            let navlist = document.querySelector('.navlist');
+
+            menuIcon.onclick = () => {
+                menuIcon.classList.toggle('bx-x');
+                navlist.classList.toggle('active');
+            };
+
+            // Close menu when clicking on a link
+            document.querySelectorAll('.navlist a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navlist.classList.remove('active');
+                    menuIcon.classList.remove('bx-x');
+                });
+            });
+
+            // Smooth scrolling for all links (ensure this doesn't conflict with section animations)
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // --- New Animation Triggering Logic ---
+
+            // Function to handle IntersectionObserver callback
+            const animateOnScroll = (entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        if (entry.target.classList.contains('story-section')) {
+                            entry.target.classList.add('fade-in');
+                        } else if (entry.target.classList.contains('timeline-item')) {
+                            entry.target.classList.add('slide-in');
+                        } else if (entry.target.tagName === 'LI' && entry.target.closest('.story-section')) {
+                            entry.target.classList.add('fade-in');
+                        }
+                        observer.unobserve(entry.target); // Stop observing once animated
+                    }
+                });
+            };
+
+            // Create a new Intersection Observer
+            const observer = new IntersectionObserver(animateOnScroll, {
+                root: null, // viewport as the root
+                threshold: 0.1 // Trigger when 10% of the element is visible
+            });
+
+            // Observe each story section
+            document.querySelectorAll('.story-section').forEach(section => {
+                observer.observe(section);
+            });
+
+            // Observe each timeline item with staggered delay
+            document.querySelectorAll('.timeline-item').forEach((item, index) => {
+                item.style.setProperty('--delay', `${index * 0.15}s`); // Stagger delay
+                observer.observe(item);
+            });
+
+            // Observe each list item in the "Our Products" section with staggered delay
+            const productList = document.querySelector('.story-section ul');
+            if (productList) {
+                productList.querySelectorAll('li').forEach((li, index) => {
+                    li.style.setProperty('--li-delay', `${index * 0.1}s`); // Stagger delay
+                    observer.observe(li);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
