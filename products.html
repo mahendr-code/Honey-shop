@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Products - Honey Shop</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;700&display=swap" rel="stylesheet">
+  ,<style>
+    /* Global Reset & Variables */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    list-style: none;
+    text-decoration: none;
+    scroll-behavior: smooth;
+    scroll-padding-top: 3rem;
+}
+
+:root {
+    --main-color: #ff9f0d;
+    --text-color: #fff;
+    --other-color: #212121;
+    --second-color: #9e9e9e;
+    --bg-color: #111111;
+    --big-font: 3.5rem;
+    --h2-font: 2.6rem;
+    --p-font: 1.1rem;
+}
+
+body {
+    background: var(--bg-color);
+    color: var(--text-color);
+    overflow-x: hidden;
+}
+
+/* --- Loading Animation --- */
+.loader-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease;
+}
+
+.loader-container.hidden {
+    opacity: 0;
+}
+
+.honey-loader {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin-bottom: 20px;
+}
+
+.honey-comb {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: var(--main-color);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    opacity: 0;
+    animation: bounce 1.5s infinite ease-in-out;
+}
+
+.honey-comb:nth-child(1) {
+    top: 0;
+    left: 20px;
+    animation-delay: 0s;
+}
+
+.honey-comb:nth-child(2) {
+    top: 30px;
+    left: 0;
+    animation-delay: 0.2s;
+}
+
+.honey-comb:nth-child(3) {
+    top: 30px;
+    left: 40px;
+    animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+        opacity: 0;
+    }
+    50% {
+        transform: translateY(-20px);
+        opacity: 1;
+    }
+}
+
+.loading-text {
+    font-size: 1.5rem;
+    color: var(--main-color);
+    text-transform: uppercase;
+}
+
+.loading-text span {
+    display: inline-block;
+    animation: honeyFlow 1.5s infinite alternate;
+}
+
+.loading-text span:nth-child(2) { animation-delay: 0.1s; }
+.loading-text span:nth-child(3) { animation-delay: 0.2s; }
+.loading-text span:nth-child(4) { animation-delay: 0.3s; }
+.loading-text span:nth-child(5) { animation-delay: 0.4s; }
+.loading-text span:nth-child(6) { animation-delay: 0.5s; }
+.loading-text span:nth-child(7) { animation-delay: 0.6s; }
+.loading-text span:nth-child(8) { animation-delay: 0.7s; }
+.loading-text span:nth-child(9) { animation-delay: 0.8s; }
+
+@keyframes honeyFlow {
+    0% {
+        transform: translateY(0);
+        color: var(--main-color);
+    }
+    100% {
+        transform: translateY(-10px);
+        color: var(--text-color);
+    }
+}
+
+/* Header Styles */
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: transparent;
+    padding: 30px 14%;
+    transition: all .50s ease;
+}
+
+header.sticky {
+    background: var(--bg-color);
+    padding: 14px 14%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    color: var(--text-color);
+    font-size: 33px;
+    font-weight: 700;
+}
+
+.logo i {
+    vertical-align: middle;
+    margin-right: 8px;
+    color: var(--main-color);
+}
+
+.navlist {
+    display: flex;
+}
+
+.navlist a {
+    color: var(--text-color);
+    font-size: var(--p-font);
+    font-weight: 600;
+    margin: 0 15px;
+    transition: all .50s ease;
+}
+
+.navlist a:hover {
+    color: var(--main-color);
+}
+
+.navlist a.active {
+    color: var(--main-color);
+}
+
+.nav-icons {
+    display: flex;
+    align-items: center;
+    padding: 8px 15px;
+    background: var(--main-color);
+    border-radius: 3rem;
+    box-shadow: #ff9f0d 0px 1px 25px;
+    transition: all .50s ease; /* Added for smoother transition */
+}
+
+.nav-icons i {
+    vertical-align: middle;
+    font-size: 25px;
+    margin-right: 8px;
+    margin-left: 5px;
+    color: var(--bg-color);
+    transition: all .50s ease;
+}
+
+.nav-icons-group { /* Added this for search input grouping */
+    display: flex;
+    align-items: center;
+}
+
+#cart{
+    font-size: 22px;
+    color: var(--text-color);
+    background: var(--main-color);
+    padding: 10px;
+    border-radius: 2rem;
+    transition: all .50s ease;
+}
+
+.cart-count {
+    position: absolute;
+    top: 30px; /* Adjusted position */
+    right: 290px; /* Adjusted position */
+    background: var(--text-color);
+    color: var(--bg-color);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    display: none; /* Hide if 0 */
+}
+
+.nav-icons input {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 3rem;
+    background: transparent;
+    color: var(--text-color);
+    font-size: 14px;
+}
+.nav-icons input::placeholder {
+    color: rgba(255, 255, 255, 0.7); /* Lighter placeholder text */
+}
+
+#menu-icon {
+    font-size: 32px;
+    color: var(--bg-color);
+    z-index: 10001;
+    cursor: pointer;
+    display: none; /* Hidden by default, shown in media queries */
+}
+
+.nav-icons i:hover {
+    transform: scale(1.1);
+    color: var(--text-color);
+}
+
+section {
+    padding: 70px 14% 60px;
+}
+
+/* Products Page Specific Styles */
+.products-container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 100px 20px 50px; /* Adjusted top padding to clear header */
+    text-align: center;
+}
+
+.products-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.products-header h2 {
+    font-size: var(--h2-font);
+    color: var(--main-color);
+    margin-bottom: 15px;
+    opacity: 0; /* Initial state for animation */
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.products-header h2.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.products-header p {
+    font-size: var(--p-font);
+    color: var(--second-color);
+    opacity: 0; /* Initial state for animation */
+    transform: translateY(20px);
+    transition: opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s; /* Slight delay */
+}
+.products-header p.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.shop-content {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    /* Center items if they don't fill the grid */
+}
+
+.row {
+    position: relative;
+    padding: 10px 30px 10px;
+    background-color: var(--other-color);
+    border-radius: 1rem; /* Changed to 1rem for a softer look */
+    transition: all 0.3s ease;
+    text-align: center; /* Center text within product card */
+
+    /* Initial state for individual product animations */
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.row.active { /* Class to trigger animation */
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.row:hover {
+    transform: translateY(-8px); /* Slightly more pronounced lift */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4); /* Stronger shadow */
+}
+
+.row img {
+    width: 100%;
+    height: auto;
+    max-height: 200px; /* Constrain image height */
+    object-fit: contain; /* Ensure image fits without cropping */
+    transition: transform .3s ease;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+.row img:hover {
+    transform: scale(1.05); /* Slight zoom on image hover */
+}
+
+.row h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.row p {
+    color: var(--second-color);
+    font-size: var(--p-font);
+    line-height: 1.5; /* Adjusted line height for better readability */
+    margin-bottom: 1.1rem;
+}
+
+.in-text {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 15px; /* Space above price and button */
+}
+
+.in-text .price h6 {
+    font-size: 17px;
+    color: var(--main-color);
+    font-weight: 600;
+}
+
+.in-text .s-btnn a {
+    display: inline-block;
+    padding: 9px 23px;
+    background: var(--bg-color);
+    color: var(--main-color);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    border-radius: 3rem;
+    transition: all .3s ease;
+}
+
+.in-text .s-btnn a:hover {
+    background: var(--main-color);
+    color: var(--bg-color);
+    box-shadow: #ff9f0d 0px 1px 25px;
+}
+
+.top-icon {
+    position: absolute;
+    top: 20px; /* Adjusted position */
+    left: 20px; /* Adjusted position */
+}
+
+.top-icon i {
+    font-size: 22px;
+    color: var(--second-color); /* Default color for heart */
+    transition: all 0.3s ease;
+}
+
+.top-icon i.liked {
+    color: #ff0000; /* Red for liked items */
+}
+
+.top-icon i:hover {
+    color: var(--main-color); /* Hover color for heart */
+}
+
+.back-to-home {
+    display: inline-flex; /* Use flex to center icon and text */
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+    padding: 12px 25px;
+    background: var(--main-color);
+    color: var(--bg-color);
+    border-radius: 3rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+.back-to-home i {
+    margin-right: 8px; /* Space between icon and text */
+    font-size: 20px;
+}
+
+.back-to-home:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255, 159, 13, 0.3);
+}
+
+/* Feedback message styles */
+.cart-feedback {
+    position: absolute;
+    bottom: 10px; /* Position above the product card */
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--main-color);
+    color: var(--bg-color); /* Changed text color for contrast */
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none; /* Allow clicks on elements below */
+    transition: bottom 0.3s ease, opacity 0.3s ease;
+}
+
+.cart-feedback.show {
+    opacity: 1;
+    bottom: 25px; /* Slide up when shown */
+}
+
+/* --- Responsive Design --- */
+
+/* Larger screens (1545px and below) - General adjustments for header and section padding */
+@media (max-width: 1800px) {
+    header {
+        padding: 22px 4%;
+    }
+
+    header.sticky {
+        padding: 14px 4%;
+    }
+
+    section {
+        padding: 50px 4% 40px;
+    }
+}
+
+
+@media (max-width: 1545px) {
+    header {
+        padding: 22px 4%;
+    }
+
+    header.sticky {
+        padding: 14px 4%;
+    }
+
+    section {
+        padding: 50px 4% 40px;
+    }
+}
+
+/* Medium screens (1180px and below) - Font size adjustments */
+@media (max-width: 1180px) {
+    :root {
+        --big-font: 3rem;
+        --h2-font: 2.2rem;
+        --p-font: 1rem;
+    }
+}
+
+/* Tablet screens (1060px and below) - Mobile menu, search bar adjustments */
+@media (max-width: 1060px) {
+    #menu-icon {
+        display: initial; /* Show the hamburger menu icon */
+    }
+
+    .navlist {
+        position: absolute;
+        top: -1000px; /* Hidden off-screen initially */
+        left: 0;
+        right: 0;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        background: var(--other-color);
+        transition: all .50s ease;
+        padding: 20px 0; /* Added padding for mobile menu */
+    }
+
+    .navlist.active {
+        top: 70px; /* Adjusted to be below the header when active */
+    }
+
+    .navlist a {
+        display: block;
+        padding: 0.8rem; /* Increased padding for tap target */
+        margin: 0.5rem 0; /* Adjusted margin */
+    }
+
+    /* Integrate search bar into the navlist for mobile */
+    .nav-icons-group {
+        display: none; /* Hide the search bar in the header nav-icons */
+    }
+
+    .navlist .nav-icons-group-mobile { /* New class for mobile search in navlist */
+        display: flex; /* Show only when navlist is active on mobile */
+        align-items: center;
+        justify-content: center;
+        margin-top: 20px; /* Space above search in mobile menu */
+        width: 80%; /* Adjust width for better appearance */
+        margin-left: auto;
+        margin-right: auto;
+        background: var(--bg-color); /* Match header's background */
+        border-radius: 3rem;
+        padding: 8px 15px;
+    }
+
+    .navlist .nav-icons-group-mobile input {
+        width: 100%;
+        padding: 8px 15px;
+        border: none;
+        background: transparent;
+        color: var(--text-color);
+        font-size: 14px;
+    }
+    .navlist .nav-icons-group-mobile i {
+        color: var(--main-color); /* Search icon color */
+        margin-left: 5px;
+        font-size: 25px;
+    }
+
+
+    .nav-icons {
+        padding: 6px 12px; /* Smaller padding for nav icons */
+    }
+    #cart {
+        padding: 8px; /* Smaller cart icon */
+    }
+    .cart-count {
+        top: -3px; /* Adjust based on header size */
+        right: -3px; /* Adjust based on header size */
+        width: 18px;
+        height: 18px;
+        font-size: 10px;
+    }
+}
+
+/* Smaller tablet screens (960px and below) - Product grid and section padding */
+@media (max-width: 960px) {
+    .shop-content {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Slightly smaller min-width for products */
+        gap: 1.5rem;
+    }
+    .products-container {
+        padding: 80px 15px 40px;
+    }
+}
+
+/* Larger mobile devices (768px and below) - Further header and text adjustments */
+@media (max-width: 768px) {
+    header {
+        padding: 12px 4%; /* More compact header */
+    }
+    .navlist.active {
+        top: 60px; /* Adjust for smaller header height */
+    }
+    .products-header h2 {
+        font-size: 2rem;
+    }
+    .products-header p {
+        font-size: 0.9rem;
+    }
+    .row {
+        padding: 10px 20px;
+    }
+    .row h3 {
+        font-size: 16px;
+    }
+    .row p {
+        font-size: 0.9rem;
+    }
+    .in-text .price h6 {
+        font-size: 15px;
+    }
+    .in-text .s-btnn a {
+        padding: 7px 18px;
+        font-size: 12px;
+    }
+    .top-icon {
+        top: 15px;
+        left: 15px;
+    }
+    .top-icon i {
+        font-size: 20px;
+    }
+     .cart-count {
+        top: 10px; /* Re-adjust for smaller header */
+        right: 40px; /* Re-adjust for smaller header */
+    }
+}
+
+/* Small mobile devices (570px and below) - Even smaller header and product title */
+@media (max-width: 570px) {
+    .products-header h2 {
+        font-size: 1.8rem;
+    }
+    .products-container {
+        padding: 70px 10px 30px;
+    }
+}
+
+/* Very small mobile devices (460px and below) - Single column product layout */
+@media (max-width: 460px) {
+    :root {
+        --big-font: 2.5rem;
+        --h2-font: 2rem;
+    }
+
+    .shop-content {
+        grid-template-columns: 1fr; /* Single column layout on very small screens */
+    }
+    .row {
+        padding: 10px 15px;
+    }
+    .back-to-home {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+    .back-to-home i {
+        font-size: 18px;
+    }
+     .cart-count {
+        top: 8px; /* Further adjustment for smallest screens */
+        right: 30px; /* Further adjustment for smallest screens */
+    }
+}
+</style>
+</head>
+<body>
+    <div class="loader-container" id="loader">
+        <div class="honey-loader">
+            <div class="honey-comb"></div>
+            <div class="honey-comb"></div>
+            <div class="honey-comb"></div>
+        </div>
+        <div class="loading-text">
+            <span>L</span><span>O</span><span>A</span><span>D</span><span>I</span><span>N</span><span>G</span><span>.</span><span>.</span><span>.</span>
+        </div>
+    </div>
+
+    <header>
+        <a href="index.html" class="logo"><i class='bx bxs-home'></i>Home</a>
+        <ul class="navlist">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="products.html" class="active">All Products</a></li>
+            <li><a href="index.html#review">Our Customer</a></li>
+            <li><a href="index.html#contact">Contact Us</a></li>
+        </ul>
+        <div class="nav-icons">
+            <div class="nav-icons-group">
+                <input type="search" placeholder="Search Here" id="search">
+                <a href="#"><i class='bx bx-search'></i></a>
+            </div>
+            <a href="cart.html" class="cart-icon">
+                <i class='bx bx-cart' id="cart"></i>
+                <span class="cart-count">0</span>
+            </a>
+            <i class='bx bx-menu' id="menu-icon"></i>
+        </div>
+    </header>
+
+    <section class="products-container">
+        <div class="products-header">
+            <h2 class="animated-text">All Our Honey Products</h2>
+            <p class="animated-text">Discover our complete range of premium honey products</p>
+        </div>
+
+        <div class="shop-content" id="for-order">
+            <div class="row" data-id="p1">
+                <img src="p1.png" alt="Blueberry honey">
+                <h3>Blueberry honey</h3>
+                <p>Sweet and tangy honey from blueberry blossoms</p>
+                <div class="in-text">
+                    <div class="price">
+                        <h6>$23.00</h6>
+                    </div>
+                    <div class="s-btnn">
+                        <a href="#" class="order-btn">Order now</a>
+                    </div>
+                </div>
+                <div class="top-icon">
+                    <a href="#" class="heart-btn"><i class='bx bx-heart'></i></a>
+                </div>
+                <div class="cart-feedback"></div>
+            </div>
+            <div class="row" data-id="p2">
+                <img src="p2.png" alt="Old honey">
+                <h3>Old honey</h3>
+                <p>Aged honey with rich, deep flavor profile</p>
+                <div class="in-text">
+                    <div class="price">
+                        <h6>$50.00</h6>
+                    </div>
+                    <div class="s-btnn">
+                        <a href="#" class="order-btn">Order now</a>
+                    </div>
+                </div>
+                <div class="top-icon">
+                    <a href="#" class="heart-btn"><i class='bx bx-heart'></i></a>
+                </div>
+                <div class="cart-feedback"></div>
+            </div>
+            <div class="row" data-id="p3">
+                <img src="p3.png" alt="Clover Honey">
+                <h3>Clover Honey</h3>
+                <p>Light and mild honey from clover flowers</p>
+                <div class="in-text">
+                    <div class="price">
+                        <h6>$30.00</h6>
+                    </div>
+                    <div class="s-btnn">
+                        <a href="#" class="order-btn">Order now</a>
+                    </div>
+                </div>
+                <div class="top-icon">
+                    <a href="#" class="heart-btn"><i class='bx bx-heart'></i></a>
+                </div>
+                <div class="cart-feedback"></div>
+            </div>
+            <div class="row" data-id="p4">
+                <img src="p4.png" alt="Pure honey">
+                <h3>Pure honey</h3>
+                <p>100% natural, unfiltered raw honey</p>
+                <div class="in-text">
+                    <div class="price">
+                        <h6>$80.00</h6>
+                    </div>
+                    <div class="s-btnn">
+                        <a href="#" class="order-btn">Order now</a>
+                    </div>
+                </div>
+                <div class="top-icon">
+                    <a href="#" class="heart-btn"><i class='bx bx-heart'></i></a>
+                </div>
+                <div class="cart-feedback"></div>
+            </div>
+            <div class="row" data-id="p5">
+                <img src="p5.png" alt="Orange Blossom Honey">
+                <h3>Orange Blossom Honey</h3>
+                <p>Citrusy honey with delicate floral aroma</p>
+                <div class="in-text">
+                    <div class="price">
+                        <h6>$24.00</h6>
+                    </div>
+                    <div class="s-btnn">
+                        <a href="#" class="order-btn">Order now</a>
+                    </div>
+                </div>
+                <div class="top-icon">
+                    <a href="#" class="heart-btn"><i class='bx bx-heart'></i></a>
+                </div>
+                <div class="cart-feedback"></div>
+            </div>
+            <div class="row" data-id="p6">
+                <img src="p6 .png" alt="Buckwheat Honey">
+                <h3>Buckwheat Honey</h3>
+                <p>Dark and robust honey with strong flavor</p>
+                <div class="in-text">
+                    <div class="price">
+                        <h6>$27.00</h6>
+                    </div>
+                    <div class="s-btnn">
+                        <a href="#" class="order-btn">Order now</a>
+                    </div>
+                </div>
+                <div class="top-icon">
+                    <a href="#" class="heart-btn"><i class='bx bx-heart'></i></a>
+                </div>
+                <div class="cart-feedback"></div>
+            </div>
+            <div class="row" data-id="p7">
+                <img src="p7.png" alt="Acacia Honey">
+                <h3>Acacia Honey</h3>
+                <p>Light and clear honey with mild taste</p>
+                <div class="in-text">
+                    <div class="price">
+                        <h6>$26.00</h6>
+                    </div>
+                    <div class="s-btnn">
+                        <a href="#" class="order-btn">Order now</a>
+                    </div>
+                </div>
+                <div class="top-icon">
+                    <a href="#" class="heart-btn"><i class='bx bx-heart'></i></a>
+                </div>
+                <div class="cart-feedback"></div>
+            </div>
+            <div class="row" data-id="p8">
+                <img src="p8.png" alt="Lavender Honey">
+                <h3>Lavender Honey</h3>
+                <p>Floral honey with subtle lavender notes</p>
+                <div class="in-text">
+                    <div class="price">
+                        <h6>$28.00</h6>
+                    </div>
+                    <div class="s-btnn">
+                        <a href="#" class="order-btn">Order now</a>
+                    </div>
+                </div>
+                <div class="top-icon">
+                    <a href="#" class="heart-btn"><i class='bx bx-heart'></i></a>
+                </div>
+                <div class="cart-feedback"></div>
+            </div>
+        </div>
+
+        <div style="text-align: center;">
+            <a href="index.html" class="back-to-home"><i class='bx bx-arrow-back'></i> Back to Home</a>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loader = document.getElementById('loader');
+            const menuIcon = document.getElementById('menu-icon');
+            const navlist = document.querySelector('.navlist');
+            const cartCountElement = document.querySelector('.cart-count');
+            const header = document.querySelector("header");
+
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            // --- Initial Page Load & Loader Animation ---
+            setTimeout(() => {
+                loader.classList.add('hidden');
+                loader.addEventListener('transitionend', () => {
+                    loader.style.display = 'none';
+                    // Trigger animations after loader is hidden
+                    animatePageContent();
+                    setupIntersectionObserver();
+                }, { once: true });
+            }, 1500); // Loader displays for 1.5 seconds
+
+            // --- Sticky Header ---
+            window.addEventListener("scroll", function() {
+                header.classList.toggle("sticky", window.scrollY > 80);
+            });
+
+            // --- Mobile Menu Toggle ---
+            if (menuIcon) {
+                menuIcon.onclick = () => {
+                    menuIcon.classList.toggle('bx-x');
+                    navlist.classList.toggle('active');
+                };
+            }
+
+            // Close menu when clicking on a link
+            document.querySelectorAll('.navlist a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navlist.classList.remove('active');
+                    if (menuIcon) menuIcon.classList.remove('bx-x');
+                });
+            });
+
+            // --- Cart Functionality ---
+            function updateCartCount() {
+                const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+                cartCountElement.textContent = totalItems;
+                cartCountElement.style.display = totalItems > 0 ? 'flex' : 'none'; // Show/hide cart count
+            }
+
+            function showFeedback(productElement, message) {
+                const feedback = productElement.querySelector('.cart-feedback');
+                if (feedback) {
+                    feedback.textContent = message;
+                    feedback.classList.add('show');
+                    setTimeout(() => {
+                        feedback.classList.remove('show');
+                    }, 1500); // Hide after 1.5 seconds
+                }
+            }
+
+            function addToCart(productId, productName, productPrice, productImg) {
+                const existingItem = cart.find(item => item.id === productId);
+
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({
+                        id: productId,
+                        name: productName,
+                        price: productPrice,
+                        img: productImg,
+                        quantity: 1
+                    });
+                }
+
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCartCount();
+                return existingItem ? existingItem.quantity : 1;
+            }
+
+            // Handle heart button clicks
+            document.querySelectorAll('.heart-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const productRow = this.closest('.row');
+                    const productId = productRow.dataset.id;
+                    const productName = productRow.querySelector('h3').textContent;
+                    const productPrice = productRow.querySelector('.price h6').textContent;
+                    const productImg = productRow.querySelector('img').src;
+
+                    const quantity = addToCart(productId, productName, productPrice, productImg);
+                    this.querySelector('i').classList.add('liked'); // Add 'liked' class to change color
+
+                    showFeedback(productRow, `${productName} added to cart (${quantity})`);
+                });
+            });
+
+            // Handle order button clicks (same as heart button for cart addition)
+            document.querySelectorAll('.order-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const productRow = this.closest('.row');
+                    const productId = productRow.dataset.id;
+                    const productName = productRow.querySelector('h3').textContent;
+                    const productPrice = productRow.querySelector('.price h6').textContent;
+                    const productImg = productRow.querySelector('img').src;
+
+                    const quantity = addToCart(productId, productName, productPrice, productImg);
+                    productRow.querySelector('.heart-btn i').classList.add('liked'); // Mark as liked if ordered
+
+                    showFeedback(productRow, `${productName} added to cart (${quantity})`);
+                });
+            });
+
+            // Initialize page: update cart count and mark liked hearts
+            updateCartCount();
+
+            // Mark hearts for items already in cart on page load
+            cart.forEach(item => {
+                const heartIcon = document.querySelector(`.row[data-id="${item.id}"] .heart-btn i`);
+                if (heartIcon) {
+                    heartIcon.classList.add('liked');
+                }
+            });
+
+            // --- Animations ---
+            function animatePageContent() {
+                // Animate header text
+                document.querySelector('.products-header h2').classList.add('active');
+                document.querySelector('.products-header p').classList.add('active');
+            }
+
+            // Intersection Observer for product cards
+            function setupIntersectionObserver() {
+                const productCards = document.querySelectorAll('.shop-content .row');
+                const observer = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('active');
+                            observer.unobserve(entry.target); // Stop observing once animated
+                        }
+                    });
+                }, {
+                    threshold: 0.2 // Trigger when 20% of the element is visible
+                });
+
+                productCards.forEach(card => {
+                    observer.observe(card);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Story - Honey Shop</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;700&display=swap" rel="stylesheet">
+    <style>
+
+    *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: 'poppins', sans-serif;
+        list-style: none;
+        text-decoration: none;
+        scroll-behavior: smooth;
+        scroll-padding-top: 3rem;
+    }
+    :root{
+        --main-color:#ff9f0d;
+        --text-color:#fff;
+        --other-color:#212121;
+        --second-color:#9e9e9e;
+        --bg-color:#111111;
+        --big-font:3.5rem;
+        --h2-font:2.6rem;
+        --p-font:1.1rem;
+    }
+    body{
+        background: var(--bg-color);
+        color: var(--text-color);
+        overflow-x: hidden; /* Prevent horizontal scroll */
+    }
+    header{
+        position: fixed;
+        width: 100%;
+        top: 0;
+        right: 0;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: transparent;
+        padding: 30px 14%;
+        transition: all .50s ease;
+    }
+    .logo{
+        display: flex;
+        align-items: center;
+        color: var(--text-color);
+        font-size: 33px;
+        font-weight: 700;
+    }
+    .logo i{
+        vertical-align: middle;
+        margin-right: 8px;
+        color: var(--main-color);
+    }
+    .navlist{
+        display: flex;
+        align-items: center; /* Align items including search box vertically */
+    }
+    .navlist li {
+        margin: 0 15px; /* Adjust spacing between nav items */
+    }
+    .navlist a {
+        color: var(--text-color);
+        font-size: var(--p-font);
+        font-weight: 600;
+        transition: all .50s ease;
+    }
+    .navlist a:hover{
+        color: var(--main-color);
+    }
+    .navlist a.active{
+        color: var(--main-color);
+    }
+
+    /* Search Box Styles (for desktop) */
+    .navlist .search-item {
+        margin-left: 30px; /* Space between nav links and search box */
+    }
+    .search-box {
+        display: flex; /* Always display as flex to align input and icon */
+        align-items: center;
+        background: var(--main-color); /* Or a different color for the search box */
+        border-radius: 3rem;
+        padding: 8px 15px;
+        box-shadow: #ff9f0d 0px 1px 25px;
+    }
+    .search-box input {
+        border: none;
+        outline: none;
+        background: transparent;
+        color: var(--bg-color); /* Text color for input */
+        font-size: 14px;
+        flex-grow: 1; /* Allow input to take available space */
+    }
+    .search-box input::placeholder {
+        color: var(--bg-color); /* Placeholder color */
+        opacity: 0.7;
+    }
+    .search-box i {
+        vertical-align: middle;
+        font-size: 20px;
+        color: var(--bg-color); /* Icon color */
+        cursor: pointer;
+        transition: all .50s ease;
+    }
+    .search-box i:hover {
+        transform: scale(1.1);
+        color: var(--text-color); /* Hover color for search icon */
+    }
+
+
+    /* Right section of header (cart and menu icon) */
+    .nav-icons-right {
+        display: flex;
+        align-items: center;
+        margin-left: 20px; /* Space from navlist */
+    }
+
+    /* Cart Icon and Count */
+    .cart-link {
+        position: relative; /* Make cart-link the positioning context for count */
+        display: flex; /* To center the icon if needed */
+        align-items: center;
+        justify-content: center;
+        margin-right: 20px; /* Space between cart and menu icon */
+    }
+
+    #cart{
+        font-size: 22px;
+        color: var(--text-color); /* Icon color itself */
+        background: var(--main-color);
+        padding: 10px;
+        border-radius: 2rem;
+        transition: all .50s ease;
+    }
+    .cart-count {
+        position: absolute;
+        top: 0px; /* Adjust relative to .cart-link */
+        right: 0px; /* Adjust relative to .cart-link */
+        background: var(--text-color);
+        color: var(--bg-color);
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: bold;
+        transform: translate(30%, -30%); /* Fine-tune position */
+        z-index: 1001; /* Ensure it's above the cart icon */
+        border: 1px solid var(--main-color); /* Optional: add a small border */
+    }
+
+    #menu-icon{
+        font-size: 32px;
+        color: var(--main-color); /* Changed color for better visibility */
+        z-index: 10001;
+        cursor: pointer;
+        display: none; /* Hidden on desktop */
+    }
+    .nav-icons i:hover{ /* This rule might be too general if you have other .nav-icons */
+        transform: scale(1.1);
+        color: var(--text-color); /* Apply to general nav icons */
+    }
+
+    /* Specific hover for cart icon */
+    #cart:hover {
+        transform: scale(1.1) rotate(5deg);
+    }
+
+    section{
+        padding: 70px 14% 60px;
+    }
+    .home{ /* This section doesn't exist on 'Our Story' page, but keeping styles for consistency if included elsewhere */
+        position: relative;
+        height: 100vh;
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        align-items: center;
+        gap: 2rem;
+    }
+    .home-img img{
+        width: 100%;
+        height: auto;
+        margin-bottom: 0rem;
+    }
+    .home-text h1{
+        font-size: var(--big-font);
+        font-weight: 600;
+        line-height: 1.3;
+        margin-bottom: 2rem;
+    }
+    span{
+        color: var(--main-color);
+    }
+    .btn{
+        display: inline-block;
+        padding: 15px 35px;
+        background: var(--other-color);
+        color: var(--main-color);
+        font-size: var(--p-font);
+        font-weight: 500;
+        letter-spacing: 1px;
+        border-radius: 3rem;
+        transition: all .50s ease;
+    }
+    .btn i{
+        vertical-align: middle;
+        margin-left: 9px;
+        font-size: 22px;
+    }
+    .btn:hover{
+        color: var(--text-color);
+        background: var(--main-color);
+        box-shadow: #ff9f0d 0px 1px 25px;
+    }
+    .btn2{
+        display: inline-block;
+        margin-left: 30px;
+        font-size: var(--p-font);
+        font-weight: 500;
+        letter-spacing: 1px;
+        border-bottom: 3px solid var(--main-color);
+        color: var(--main-color);
+        transition: all .50s ease;
+    }
+    .btn2:hover{
+        transform: scale(1.1) translateX(12px);
+    }
+    header.sticky{
+        padding: 12px 14%;
+        background: var(--other-color);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Add a subtle shadow */
+        animation: fadeInDown 0.5s ease-out; /* Optional: animation when header becomes sticky */
+    }
+    .container{ /* This section also doesn't exist on 'Our Story' page */
+        padding: 30px 5% 70px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, auto));
+        gap: 1rem;
+        text-align: center;
+    }
+    .container-box{
+        padding: 40px;
+        background: var(--other-color);
+        border-radius: 3rem;
+    }
+    .container-box img{
+        width: 100%;
+        max-width: 50px;
+        height: auto;
+    }
+    .container-box h3{
+        font-size: 21px;
+        font-weight: bold;
+        margin: 16px 0;
+    }
+    .container-box a{
+        color: var(--second-color);
+        font-size: var(--p-font);
+        letter-spacing: 1px;
+        transition: all .50s ease;
+    }
+    .container-box a:hover{
+        color: var(--main-color);
+    }
+    .about{ /* This section also doesn't exist on 'Our Story' page */
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        align-items: center;
+        gap: 4rem;
+    }
+    .about-img img{
+        width: 100%;
+        height: auto;
+    }
+    .about-text h2{
+        font-size: var(--h2-font);
+        line-height: 1.3;
+        margin-bottom: 2rem;
+    }
+    .about-text p{
+        color: var(--second-color);
+        font-size:var(--p-font);
+        line-height: 30px;
+        margin-bottom: 3rem;
+    }
+    .middle-text{ /* This section also doesn't exist on 'Our Story' page */
+        text-align: center;
+    }
+    .middle-text h4{
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 10px;
+        color: var(--main-color);
+    }
+    .middle-text h2{
+        font-size: var(--h2-font);
+    }
+    .shop-content{ /* This section also doesn't exist on 'Our Story' page */
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+        gap: 2rem;
+        align-items: center;
+        margin-top: 4rem;
+    }
+    .row{
+        position: relative;
+        padding: 10px 30px 10px;
+        background-color: var(--other-color);
+        border-radius: 3rem;
+    }
+    .row img{
+        width: 100%;
+        height: auto;
+        transition: all .50s ease;
+        cursor: pointer;
+    }
+    .row h3{
+        font-size: 18px;
+        margin-bottom: 5px;
+        font-weight: 700;
+    }
+    .row p{
+        color: var(--second-color);
+        font-size: var(--p-font);
+        line-height: 30px;
+        margin-bottom: 1.1rem;
+    }
+    .in-text{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .in-text .price h6{
+        font-size: 17px;
+        color: var(--main-color);
+        font-weight: 600;
+    }
+    .in-text .s-btnn a{
+        display: inline-block;
+        padding: 9px 23px;
+        background: var(--bg-color);
+        color: var(--main-color);
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 1px;
+        border-radius: 3rem;
+        transition: all .50s ease;
+    }
+    .in-text .s-btnn a:hover{
+        background: var(--main-color);
+        color: var(--bg-color);
+        box-shadow: #ff9f0d 0px 1px 25px;
+    }
+    .top-icon{
+        position: absolute;
+        top: 30px;
+        left: 35px;
+    }
+    .top-icon i{
+        font-size: 22px;
+        color: var(--main-color);
+    }
+    .row-btn{
+        text-align: center;
+        margin-top: 6rem;
+    }
+    .row img:hover{
+        transform: scale(1.1);
+    }
+    .review-content{ /* This section also doesn't exist on 'Our Story' page */
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, auto));
+        gap: 2rem;
+        align-items: center;
+        margin-top: 4rem;
+    }
+    .box{
+        padding: 35px;
+        background: var(--other-color);
+        border-radius: 3rem;
+    }
+    .box p{
+        color: var(--second-color);
+        font-size: var(--p-font);
+        line-height: 30px;
+        margin-bottom: 1.5rem;
+    }
+    .in-box{
+        display: flex;
+        align-items: center;
+        gap: 30px;
+    }
+    .bx-img img{
+        width: 100%;
+        height: auto;
+        max-width: 80px;
+        border-radius: 3rem;
+    }
+    .bxx-text h4{
+        margin: 5px 0;
+        font-size: 18px;
+    }
+    .bxx-text h5{
+        color: var(--second-color);
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 1px;
+        margin-bottom: 10px;
+    }
+    .rating i{
+        color: var(--main-color);
+    }
+    .contact-content{ /* This section also doesn't exist on 'Our Story' page */
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+    .contact-img{
+        display: flex;
+        flex-wrap: wrap;
+        text-align: center;
+        gap: 4rem;
+        margin-bottom: 5rem;
+        justify-content: center;
+    }
+    .contact-img img{
+        width: 100%;
+        max-width: 200px;
+        height: auto;
+        cursor: pointer;
+        transition: all .50s ease;
+    }
+    .contact-img img:hover{
+        transform: scale(0.9);
+    }
+    .contact-text{
+        text-align: center;
+        margin-bottom: 4rem;
+    }
+    .contact-text h2{
+        font-size: var(--h2-font);
+        margin-bottom: 10px;
+    }
+    .contact-text p{
+        color: var(--second-color);
+        font-size: var(--p-font);
+        max-width: 950px;
+        line-height: 30px;
+        margin-bottom: 3rem;
+    }
+    .social{
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+    .social i{
+        display: inline-block;
+        font-size: 32px;
+        color: var(--second-color);
+        transition: all .50s ease;
+    }
+    .social .clr i{
+        color: var(--main-color);
+    }
+    .social i:hover{
+        color: var(--main-color);
+    }
+    .main-d i{
+        color: var(--main-color);
+        font-size: 22px;
+    }
+    .main-d a{
+        color: var(--second-color);
+        font-size: 15px;
+    }
+    .details{
+        text-align: center;
+    }
+    .scroll{
+        position: fixed;
+        bottom: 2.2rem;
+        right: 3.2rem;
+        z-index: 1000;
+    }
+    .scroll i{
+        font-size: 22px;
+        color: var(--text-color);
+        background: var(--main-color);
+        padding: 10px;
+        border-radius: 2rem;
+        transition: all .50s ease;
+    }
+    .scroll i:hover{
+        transform: translateY(-5px);
+    }
+
+    /* --- Story Page Specific Styles --- */
+    .story-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 50px 50px;
+        margin-top: 60px;
+    }
+    .story-section {
+        margin-bottom: 50px;
+    }
+    .story-section h2 {
+        color: var(--main-color);
+        margin-bottom: 20px;
+        font-size: var(--h2-font); /* Ensure consistent heading size */
+    }
+    .story-section p {
+        line-height: 1.8;
+        margin-bottom: 15px;
+        color: var(--second-color); /* Ensure text color is consistent */
+    }
+    .timeline {
+        position: relative;
+        padding-left: 30px; /* Space for the line and circles */
+        border-left: 2px solid var(--second-color); /* Main timeline line */
+    }
+    .timeline-item {
+        position: relative;
+        margin-bottom: 30px;
+        padding-left: 20px; /* Space for timeline content */
+    }
+    .timeline-item h3 {
+        color: var(--text-color);
+        margin-bottom: 5px;
+    }
+    .timeline-item p {
+        color: var(--second-color);
+    }
+    .timeline-item:before {
+        content: '';
+        position: absolute;
+        left: -10px; /* Position circle on the line */
+        top: 5px;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background: var(--main-color);
+        box-shadow: 0 0 10px var(--main-color); /* Add a glow to timeline dots */
+        z-index: 1; /* Ensure circle is above the line */
+    }
+    /* We don't need timeline-item:after because .timeline already has border-left */
+
+    .story-section ul {
+        list-style: disc; /* Default bullet points */
+        padding-left: 20px; /* Indent list items */
+        margin-top: 15px;
+    }
+    .story-section ul li {
+        margin-bottom: 10px;
+        color: var(--text-color); /* Color for list items */
+        line-height: 1.6;
+    }
+    .back-btn { /* This class is on an 'a' tag, but your HTML uses 'btn' for consistency */
+        display: inline-block;
+        margin-top: 30px;
+        padding: 10px 20px;
+        background: var(--main-color);
+        color: var(--text-color);
+        border-radius: 3rem;
+        transition: all .3s ease;
+    }
+    .back-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0px 8px 15px rgba(255, 159, 13, 0.4);
+    }
+
+    /* --- Animations & Transitions --- */
+
+    @keyframes fadeInDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Story Section Entrance Animation */
+    .story-section {
+        opacity: 0; /* Hidden by default */
+        transform: translateY(50px); /* Start slightly below */
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* Smooth transition */
+    }
+    .story-section.fade-in {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Timeline specific animations */
+    .timeline-item {
+        opacity: 0;
+        transform: translateX(-50px); /* Start off-screen to the left */
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        transition-delay: var(--delay, 0s); /* Use CSS variable for staggered effect, fallback to 0s */
+    }
+    .timeline-item.slide-in {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    /* List item animations for "Our Products" */
+    .story-section ul li {
+        opacity: 0;
+        transform: translateX(-20px);
+        transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        transition-delay: var(--li-delay, 0s); /* Staggered delay for list items, fallback to 0s */
+    }
+    .story-section ul li.fade-in {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    /* Media Query Adjustments for Animations (optional, but good for performance) */
+    @media (prefers-reduced-motion: reduce) {
+        .story-section, .timeline-item, .story-section ul li {
+            animation: none !important;
+            transition: none !important;
+            transform: none !important;
+            opacity: 1 !important;
+        }
+    }
+
+
+    /* --- Responsive Design --- */
+
+    /* Max-width 1900px adjustments (if needed, otherwise default styles apply) */
+    /* This range often uses desktop styles */
+
+    @media (max-width: 1545px) {
+        header{
+            padding: 22px 4%;
+            transition: .2s;
+        }
+        header.sticky{
+            padding: 14px 4%;
+            transition: .2s;
+        }
+        section{
+            padding: 50px 4% 40px;
+            transition: .2s;
+        }
+        .story-content {
+            padding: 40px 4%;
+            margin-top: 60px; /* Adjust if sticky header size changes */
+        }
+    }
+
+    @media (max-width: 1180px) {
+        :root{
+            --big-font:3rem;
+            --h2-font:2.2rem;
+            --p-font:1rem;
+        }
+        .logo{
+            font-size: 20px;
+        }
+        .navlist a {
+            font-size: 0.90rem;
+            margin: 0 5px;
+        }
+        .navlist .search-item {
+            margin-left: 20px;
+        }
+        .search-box input {
+            font-size: 13px;
+        }
+        .story-section h2 {
+            font-size: var(--h2-font);
+        }
+        .story-section p, .timeline-item p, .story-section ul li {
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+    }
+
+    @media (max-width: 1060px) {
+        /* Mobile menu specific styles */
+        .navlist {
+            position: absolute;
+            top: -1000px; /* Hidden initially */
+            left: 0;
+            right: 0;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            background: var(--other-color);
+            transition: all .50s ease;
+            z-index: 999; /* Ensure it's above other content but below menu-icon */
+            padding: 20px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5); /* Add shadow for depth */
+        }
+        .navlist.active {
+            top: 80px; /* Adjust based on header height when sticky */
+        }
+        .navlist li {
+            margin: 10px 0; /* Vertical spacing for menu items */
+        }
+        .navlist a {
+            font-size: 1.2rem; /* Larger font for mobile links */
+            padding: 8px 0;
+        }
+        .navlist a:hover {
+            color: var(--main-color);
+            transform: translateX(10px); /* Slight slide on hover */
+        }
+
+        /* Search box inside the mobile menu */
+        .navlist .search-item {
+            display: block; /* Show search item when navlist is active */
+            width: 90%; /* Occupy more width in the mobile menu */
+            margin: 20px auto; /* Center the search box */
+        }
+        .search-box {
+            background: var(--bg-color); /* Darker background for searchbox in menu */
+            padding: 10px 15px;
+            width: 100%;
+            box-shadow: none; /* Remove box-shadow to keep it clean */
+        }
+        .search-box input {
+            color: var(--text-color); /* Text color in search input */
+        }
+        .search-box input::placeholder {
+            color: var(--second-color);
+        }
+        .search-box i {
+            color: var(--main-color); /* Search icon color */
+        }
+
+        /* Hide desktop-specific search bar (if any was outside navlist previously) */
+        .header > .nav-icons { /* Target the old .nav-icons if it exists outside navlist */
+            display: none;
+        }
+
+        #menu-icon{
+            display: block; /* Show hamburger menu icon */
+        }
+        header{
+            padding: 20px 4%; /* Adjust header padding for mobile */
+        }
+        header.sticky{
+            padding: 12px 4%; /* Smaller sticky header */
+        }
+        .nav-icons-right {
+            margin-left: 0; /* Remove extra margin */
+        }
+        .cart-link {
+            margin-right: 15px; /* Adjust spacing between cart and menu icon */
+        }
+    }
+
+    @media (max-width: 768px) {
+        :root {
+            --big-font: 2.8rem;
+            --h2-font: 2rem;
+            --p-font: 0.9rem;
+        }
+        .logo {
+            font-size: 25px;
+        }
+        #cart {
+            padding: 8px; /* Slightly smaller cart icon */
+        }
+        .cart-count {
+            width: 18px;
+            height: 18px;
+            font-size: 11px;
+            transform: translate(25%, -25%); /* Adjust for smaller icon */
+        }
+
+        .story-content {
+            padding: 30px 3%; /* More padding adjustment */
+            margin-top: 50px; /* Adjust if header is smaller */
+        }
+        .story-section h2 {
+            font-size: 1.8rem;
+        }
+        .story-section p, .timeline-item p, .story-section ul li {
+            font-size: 0.85rem;
+            line-height: 1.7;
+        }
+        .timeline {
+            padding-left: 20px;
+        }
+        .timeline-item:before {
+            left: -8px;
+            width: 12px;
+            height: 12px;
+        }
+        .timeline-item {
+            padding-left: 15px;
+        }
+        .back-btn {
+            padding: 8px 20px;
+            font-size: 0.9rem;
+        }
+    }
+
+    @media (max-width: 576px) {
+        :root {
+            --big-font: 2.2rem;
+            --h2-font: 1.6rem;
+            --p-font: 0.8rem;
+        }
+        header {
+            padding: 15px 3%;
+        }
+        header.sticky {
+            padding: 10px 3%;
+        }
+        .logo {
+            font-size: 22px;
+        }
+        #menu-icon {
+            font-size: 28px;
+        }
+        .navlist.active {
+            top: 60px; /* Adjust based on new header height */
+        }
+        .navlist a {
+            font-size: 1rem;
+        }
+        .search-box {
+            padding: 8px 12px;
+        }
+        .search-box input {
+            font-size: 12px;
+        }
+        .search-box i {
+            font-size: 18px;
+        }
+        .story-content {
+            padding: 20px 2%; /* Maximize content space */
+            margin-top: 40px;
+        }
+        .story-section {
+            margin-bottom: 30px;
+        }
+        .story-section h2 {
+            font-size: 1.5rem;
+        }
+        .story-section p, .timeline-item p, .story-section ul li {
+            font-size: 0.8rem;
+            line-height: 1.6;
+        }
+        .timeline-item {
+            margin-bottom: 20px;
+        }
+        .back-btn {
+            padding: 7px 18px;
+            font-size: 0.85rem;
+        }
+    }
+
+    @media (max-width: 400px) {
+        :root {
+            --h2-font: 1.4rem;
+        }
+        .logo {
+            font-size: 20px;
+        }
+        #cart {
+            font-size: 20px;
+            padding: 6px;
+        }
+        .cart-count {
+            width: 16px;
+            height: 16px;
+            font-size: 10px;
+            transform: translate(20%, -20%);
+        }
+        #menu-icon {
+            font-size: 26px;
+        }
+        .navlist.active {
+            top: 55px;
+        }
+        .navlist a {
+            font-size: 0.9rem;
+        }
+        .search-box input {
+            font-size: 11px;
+        }
+        .search-box i {
+            font-size: 16px;
+        }
+        .story-section h2 {
+            font-size: 1.3rem;
+        }
+        .story-section p, .timeline-item p, .story-section ul li {
+            font-size: 0.75rem;
+        }
+        .timeline-item:before {
+            left: -6px;
+            width: 10px;
+            height: 10px;
+        }
+        .timeline-item {
+            padding-left: 10px;
+        }
+        .back-btn {
+            padding: 6px 15px;
+            font-size: 0.8rem;
+        }
+    }
+
+    @media (max-width: 320px) { /* Even smaller devices */
+        header {
+            padding: 10px 2%;
+        }
+        .logo {
+            font-size: 18px;
+        }
+        #menu-icon {
+            font-size: 24px;
+        }
+        .navlist.active {
+            top: 50px;
+        }
+        .navlist a {
+            font-size: 0.85rem;
+        }
+        .search-box {
+            padding: 6px 10px;
+        }
+        .story-content {
+            padding: 15px 1%;
+            margin-top: 30px;
+        }
+        .story-section h2 {
+            font-size: 1.2rem;
+        }
+        .story-section p, .timeline-item p, .story-section ul li {
+            font-size: 0.7rem;
+            line-height: 1.5;
+        }
+        .timeline-item {
+            padding-left: 8px;
+        }
+        .timeline-item:before {
+            width: 8px;
+            height: 8px;
+            left: -4px;
+        }
+        .back-btn {
+            padding: 5px 12px;
+            font-size: 0.75rem;
+        }
+    }
+</style>            
+    
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo"><i class='bx bxs-home'></i>Home</a>
+        <ul class="navlist">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html" class="active">About Us</a></li>
+            <li><a href="index.html#shop">Our Shop</a></li>
+            <li><a href="index.html#review">Our Customer</a></li>
+            <li><a href="index.html#contact">Contact Us</a></li>
+            <li class="search-item">
+                <div class="search-box">
+                    <input type="search" placeholder="Search Here">
+                    <i class='bx bx-search'></i>
+                </div>
+            </li>
+        </ul>
+
+        <div class="nav-icons-right">
+            <a href="cart.html" class="cart-link"><i class='bx bx-cart' id="cart"></i><span class="cart-count">0</span></a>
+            <i class='bx bx-menu' id="menu-icon"></i>
+        </div>
+    </header>
+
+    <section class="story-content">
+        <div class="story-section">
+            <h2>Our Humble Beginnings</h2>
+            <p>Founded in 2010, Honey Shop started as a small family business with just 5 beehives in the countryside. Our founder, John Beekeeper, had a passion for pure, natural honey and wanted to share it with the world.</p>
+        </div>
+
+        <div class="story-section">
+            <h2>Our Process</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>Beekeeping</h3>
+                    <p>We maintain over 200 hives across organic farms, ensuring our bees have access to the purest nectar sources.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Harvesting</h3>
+                    <p>Our honey is harvested only twice a year to allow proper maturation and to not stress the bees.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Processing</h3>
+                    <p>We use cold extraction methods to preserve all the natural enzymes and nutrients in the honey.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Packaging</h3>
+                    <p>All our honey is packaged in glass jars to maintain purity and prevent chemical leaching.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="story-section">
+            <h2>Our Products</h2>
+            <ul>
+                <li>Raw, unfiltered honey</li>
+                <li>Organic honey varieties (Wildflower, Clover, Orange Blossom)</li>
+                <li>Honey-based skincare products</li>
+                <li>Specialty infused honeys (Cinnamon, Ginger, Chili)</li>
+                <li>Beeswax candles and products</li>
+            </ul>
+        </div>
+
+        <div class="story-section">
+            <h2>Shop Hours</h2>
+            <p>Our physical store is open:</p>
+            <p>Monday-Friday: 9am - 6pm</p>
+            <p>Saturday: 10am - 4pm</p>
+            <p>Sunday: Closed</p>
+        </div>
+
+        <a href="index.html" class="btn"><i class='bx bx-arrow-back'></i> Back to Home</a>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Existing cart count and sticky header logic
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            document.querySelector('.cart-count').textContent = cart.length;
+
+            const header = document.querySelector("header");
+            window.addEventListener("scroll", function () {
+                header.classList.toggle("sticky", this.window.scrollY > 80);
+            });
+
+            // Mobile Menu Toggle
+            let menuIcon = document.querySelector('#menu-icon');
+            let navlist = document.querySelector('.navlist');
+
+            menuIcon.onclick = () => {
+                menuIcon.classList.toggle('bx-x');
+                navlist.classList.toggle('active');
+            };
+
+            // Close menu when clicking on a link
+            document.querySelectorAll('.navlist a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navlist.classList.remove('active');
+                    menuIcon.classList.remove('bx-x');
+                });
+            });
+
+            // Smooth scrolling for all links (ensure this doesn't conflict with section animations)
+            // This part should ideally be on your main index.html for links like #shop, #review, #contact
+            // For this 'Our Story' page, links like home and about will navigate normally.
+            // If you intend for internal jumps within 'Our Story', keep this. Otherwise, for better
+            // navigation to other pages, you might remove it or refine its scope.
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    // Only prevent default if it's an internal hash link on the *current* page
+                    if (this.hostname === window.location.hostname && this.pathname === window.location.pathname) {
+                        e.preventDefault();
+                        const targetId = this.getAttribute('href').substring(1);
+                        const targetElement = document.getElementById(targetId);
+                        if (targetElement) {
+                            targetElement.scrollIntoView({
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
+
+
+            // --- New Animation Triggering Logic ---
+
+            // Function to handle IntersectionObserver callback
+            const animateOnScroll = (entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        if (entry.target.classList.contains('story-section')) {
+                            entry.target.classList.add('fade-in');
+                        } else if (entry.target.classList.contains('timeline-item')) {
+                            entry.target.classList.add('slide-in');
+                        } else if (entry.target.tagName === 'LI' && entry.target.closest('.story-section')) {
+                            entry.target.classList.add('fade-in');
+                        }
+                        observer.unobserve(entry.target); // Stop observing once animated
+                    }
+                });
+            };
+
+            // Create a new Intersection Observer
+            const observer = new IntersectionObserver(animateOnScroll, {
+                root: null, // viewport as the root
+                threshold: 0.1 // Trigger when 10% of the element is visible
+            });
+
+            // Observe each story section
+            document.querySelectorAll('.story-section').forEach(section => {
+                observer.observe(section);
+            });
+
+            // Observe each timeline item with staggered delay
+            document.querySelectorAll('.timeline-item').forEach((item, index) => {
+                item.style.setProperty('--delay', `${index * 0.15}s`); // Stagger delay
+                observer.observe(item);
+            });
+
+            // Observe each list item in the "Our Products" section with staggered delay
+            const productList = document.querySelector('.story-section ul');
+            if (productList) {
+                productList.querySelectorAll('li').forEach((li, index) => {
+                    li.style.setProperty('--li-delay', `${index * 0.1}s`); // Stagger delay
+                    observer.observe(li);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
